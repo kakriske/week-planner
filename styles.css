@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header > * {
+  margin-bottom: 24px;
+}
+
+#first-header {
+  margin-top: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.days-of-week-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.days-of-week-container > label {
+  margin: 8px 0;
+}
+
+.days-of-week-container > select {
+  padding: 5px;
+}
