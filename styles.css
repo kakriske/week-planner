@@ -16,6 +16,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .days-of-week-container {
@@ -32,22 +36,57 @@
   padding: 5px;
 }
 
-tr {
-  height: 12px;
+button {
+  padding: 5px 8px;
+  color: white;
+  border-radius: 4px;
+  border: none;
 }
 
-tbody > tr:nth-child(odd) {
-  background-color: lightgray;
+#add-new-event-button {
+  margin-top: 50px;
+  margin-bottom: 10px;
+  background-color: gray;
 }
 
 table {
-  border: 2px solid red;
+  border: 1px solid lightgray;
+  width: 100%;
+  padding: 0;
+  border-spacing: 0;
+  border-collapse: collapse;
+  text-align: left;
+  text-justify: auto;
+  font-size: 10px;
 }
 
 thead {
-  border: 2px solid blue;
+  padding: 100px;
 }
 
-tbody {
-  border: 2px orange solid;
+tr {
+  height: 30px;
+}
+
+tbody > tr:nth-child(odd) {
+  background-color: rgb(240, 240, 240);
+}
+
+th {
+  font-weight: 900;
+  border: 1px solid lightgray;
+  padding-top: 10px;
+  padding-left: 5px;
+}
+
+td {
+  border: 1px solid lightgray;
+  padding-bottom: 10px;
+  padding-left: 5px;
+}
+
+footer {
+  margin-top: 30px;
+  align-self: flex-start;
+  font-size: 10px;
 }
