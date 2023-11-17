@@ -31,3 +31,23 @@
 .days-of-week-container > select {
   padding: 5px;
 }
+
+tr {
+  height: 12px;
+}
+
+tbody > tr:nth-child(odd) {
+  background-color: lightgray;
+}
+
+table {
+  border: 2px solid red;
+}
+
+thead {
+  border: 2px solid blue;
+}
+
+tbody {
+  border: 2px orange solid;
+}
