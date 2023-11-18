@@ -90,6 +90,32 @@
       </div>
       <footer>2023 Week Planner Inc</footer>
     </main>
+    <div id="modal-main" class="hidden">
+      <form id="modal-form">
+        <div class="container">
+          <label for="time-of-event">Time of Event:</label>
+          <select id="modal-time-of-event-selector" name="time-of-event" class="time-of-event-selector">
+            <option>Choose a Time</option>
+            <option>0400</option>
+          </select>
+        </div>
+        <div class="container">
+          <label for="days-of-week">Day of the Week:</label>
+          <select id="modal-day-of-the-week-selector" name="days-of-week">
+            <option>Choose a Day</option>
+            <option>Sunday</option>
+          </select>
+        </div>
+        <div class="container">
+          <label for="event-information">Event Information:</label>
+          <textarea id="event-information" name="event-information" rows="7"></textarea>
+        </div>
+        <div class="button-row-container">
+          <button id="cancel-button">Cancel</button>
+          <button id="confirm-button">Confirm</button>
+        </div>
+      </form>
+    </div>
     <script src="main.js"></script>
   </body>
 </html>
