@@ -19,7 +19,7 @@ const $tableRowTemplateOG = document.querySelector('.table-row');
 const rowsRendered = 10;
 let modalOpen = false;
 
-const data = {
+let data = {
   Sunday: [],
   Monday: [],
   Tuesday: [],
@@ -96,9 +96,26 @@ function addNewEventButtonClicked(event) {
   $idModalMain.classList.remove('hidden');
 }
 
+
+// load in data from storage
+const oldData = JSON.parse(localStorage.getItem('week-planner-data'))
+if (oldData !== null) data = oldData
+
+
+for (const key in data){
+  const entryListForDay = data[key]
+  console.log(key, entryListForDay);
+
+  for (let i = 0; i < entryListForDay.length; i++) {
+    const entry = entryListForDay[i]
+    applyEntry(entry);
+  }
+
+}
+
 $addNewEventButton.addEventListener('click', addNewEventButtonClicked);
 $modalForm.addEventListener('click', modalFormClicked);
 
-// document.addEventListener('DOMContentLoaded', function (event) {
-
-// });
+window.addEventListener('beforeunload', function (event) {
+  localStorage.setItem('week-planner-data', JSON.stringify(data));
+});
