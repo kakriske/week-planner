@@ -11,6 +11,12 @@ const $modalDayOfWeek = document.querySelector(
 );
 const $eventInformation = document.querySelector('#event-information');
 
+const $tbodyElement = document.querySelector('tbody');
+const $tableRowTemplateOG = document.querySelector('.table-row');
+// 2 classes, occupied, available
+
+
+const rowsRendered = 10;
 let modalOpen = false;
 
 const data = {
@@ -29,7 +35,27 @@ const data = {
 //   eventInfo: 'string event info'
 // }
 
-function applyEntry() {}
+function createTableRow() {
+  return $tableRowTemplateOG.cloneNode(true);
+}
+
+for (let i = 1; i < rowsRendered; i++) {
+  const $newTableRow = createTableRow();
+  $tbodyElement.append($newTableRow);
+}
+
+function applyEntry(entry) {
+  const $tableRow = document.querySelector('.available');
+  if ($tableRow !== null) {
+    // found a table row that is available for use
+    const thElements$ = $tableRow.querySelectorAll('td');
+    $tableRow.classList.remove('available');
+    thElements$[0].innerHTML = entry.timeOfEvent;
+    thElements$[1].innerHTML = entry.eventInfo;
+  } else {
+    // if it doesn't exist, create a table row
+  }
+}
 
 function confirmButtonClicked(event) {
   const newEntry = {
@@ -38,29 +64,26 @@ function confirmButtonClicked(event) {
     timeOfEvent: $modalTimeOfEvent.value,
   };
   if (newEntry.dayOfWeek === 'Choose a Day') {
-    console.log(';other stuff');
     return;
   }
   if (newEntry.timeOfEvent === 'Choose a Time') {
-    console.log('stuff');
     return;
   }
-
 
   const currentDay = newEntry.dayOfWeek; // This is a day of the week, "Sunday" or "Monday".
   const currentDayObject = data[currentDay]; // this accesses our storage for any entries made for a day of the week, example: Accesses every entry for "Sunday"
   currentDayObject.push(newEntry);
-  console.log('currentDay', currentDay);
-  console.log('data[currentDay]', data[currentDay]);
   // data[newEntry.dayOfWeek].push(newEntry); // lines 40-42 in one line
+  applyEntry(newEntry);
 }
 
 function modalFormClicked(event) {
   event.preventDefault();
-  console.log(event.target);
+
   const $target = event.target;
   const className = $target.className;
-  if (className === 'button') {
+  const tagName = $target.tagName;
+  if (tagName === 'BUTTON') {
     $idModalMain.classList.add('hidden');
   }
   if ($target === $confirmButton) {
@@ -73,7 +96,9 @@ function addNewEventButtonClicked(event) {
   $idModalMain.classList.remove('hidden');
 }
 
-document.addEventListener('DOMContentLoaded', function (event) {
-  $addNewEventButton.addEventListener('click', addNewEventButtonClicked);
-  $modalForm.addEventListener('click', modalFormClicked);
-});
+$addNewEventButton.addEventListener('click', addNewEventButtonClicked);
+$modalForm.addEventListener('click', modalFormClicked);
+
+// document.addEventListener('DOMContentLoaded', function (event) {
+
+// });
