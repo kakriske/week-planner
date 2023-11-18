@@ -44,16 +44,23 @@ for (let i = 1; i < rowsRendered; i++) {
   $tbodyElement.append($newTableRow);
 }
 
+
+
 function applyEntry(entry) {
   const $tableRow = document.querySelector('.available');
   if ($tableRow !== null) {
     // found a table row that is available for use
-    const thElements$ = $tableRow.querySelectorAll('td');
+    const tdElements$ = $tableRow.querySelectorAll('td');
     $tableRow.classList.remove('available');
-    thElements$[0].innerHTML = entry.timeOfEvent;
-    thElements$[1].innerHTML = entry.eventInfo;
+
+    tdElements$[0].innerHTML = entry.timeOfEvent;
+    tdElements$[1].innerHTML = entry.eventInfo;
+
+    const $hiddenDiv = tdElements$[2].querySelector('div');
+    $hiddenDiv.classList.remove('hidden');
   } else {
     // if it doesn't exist, create a table row
+
   }
 }
 
@@ -74,6 +81,7 @@ function confirmButtonClicked(event) {
   const currentDayObject = data[currentDay]; // this accesses our storage for any entries made for a day of the week, example: Accesses every entry for "Sunday"
   currentDayObject.push(newEntry);
   // data[newEntry.dayOfWeek].push(newEntry); // lines 40-42 in one line
+  $modalForm.reset()
   applyEntry(newEntry);
 }
 
